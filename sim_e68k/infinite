@@ -1,0 +1,4 @@
+* Boucle infinie
+            NOP
+LOOP        NOP
+            BRA     LOOP

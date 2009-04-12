@@ -1,0 +1,45 @@
+
+:::::::::::::::::::: OPEN_FILE ::::::::::::::::::::
+
+Bibliotheque de fonction pour ouvrir des fichiers sans
+sacrifier sa concentration sur l'autel des printfs et
+des test d'existence ...
+
+Auteur   KEDJI Komlan Akpedje
+Date     14 Janvier 2007
+Licence  GPL (voir licence.txt)
+
+Utilisation:
+
+Pour tester la bibliotheque, il faut decommenter la fonction
+main() dans open_file.c et compiler ce dernier avec son header
+
+(Instructions generiques)
+Pour utiliser la bibliotheque il faut inclure le fichier
+open_file.h dans tout fichier utilisant ces fonctions et
+compiler le fichier open_file.c avec le projet (Si vous
+avez un Makefile, open_file.c depend de open_file.h seulement)
+
+Les noms des fonctions devraient etre auto-explicatives
+pour qui a deja utilise fopen() (r = lecture, w =
+ecriture, a = ajout).
+
+Le premier parametre (nom_fichier) peut etre recupere
+de facon neutre par la fonction quel_nom() (*neutre*
+parce que quel_nom() se contente de recuperer le nom
+du fichier avec l'invite "Nom de fichier"; de sorte a
+s'adapter a tous les cas de figure. C'est au programmeur
+d'expliquer prealablement a l'utilisateur pourquoi on
+lui demande un nom de fichier)
+
+Le second parametre (plus), lorsque different de zero,
+provoque l'ouverture en mode etendu (respectivement r+,
+w+, a+)
+
+A PROPOS DE OF_abandon
+-------------------------------------------------------------------
+Ce flag est mis a 1 a chaque fois que l'operation est avortee par
+l'utilisateur. Cela permet au programmeur de savoir qui (le systeme
+ou l'utilisateur) est responsable de la valeur NULL renvoyee. Il
+reste a zero quand le probleme vient du systeme
+Have fun!

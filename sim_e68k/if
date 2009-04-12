@@ -1,0 +1,9 @@
+* structure if..then..else
+        NOP
+IF      SUB     D0,D1   ; IF(D0==D1)
+        BNE     ELSE
+        NOP             ; THEN BRANCH
+        BRA     ENDIF
+ELSE    NOP
+        NOP             ; ELSE BRANCH
+ENDIF   NOP

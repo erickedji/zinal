@@ -1,0 +1,161 @@
+TINY PARSER
+
+Auteur:     KEDJI Komlan Akpédjé <eric_kedji@yahoo.fr> Licence:    GPL
+
+
+INTRODUCTION:
+-----------------------------------------------------------------------
+
+    TINY PARSER est une implémentation en C d'une module d'évaluation
+    d'expressions mathématiques. Le noyau du module est la fonction
+    eval, dont la prototype est:
+
+double eval(char * expression, double * x, double * y)
+
+Le module se limite à l'évaluation d'une fonction de deux variables x et
+y.
+
+Exemple: eval("2xcos(3y) + 5*4x - 12*y", &xtest, &ytest) ==> -23.038752
+pour *xtest = 2 et *ytest = 3
+
+L'algorithme utilisé pour évaluer l'expression est inspiré d'un exemple
+donné dans "The C Book" publié par GB-Direct pour illustrer la
+récursivité. L'exemple original (le but étant d'illustrer tout
+simplement la récursivité) est plutôt simpliste.  Il reconnaît les
+opérations: +, -, /, *, %; ne reconnaît que des chiffres (0-9); ne
+tolère pas les espaces; ne reconnait ni variable, ni fonction ...
+
+L'idée est de définir une expression mathématique à l'aide de la
+notation BNF (Backus-Naur form). Une fois la grammaire correctement
+écrite, le reste n'est plus qu'hémorragie de 'switch'.
+
+COMPILATION:
+-----------------------------------------------------------------------
+
+    Le parser fait partie de l'ensemble ZINAL. Le programme de test du
+    parser dépend des modules 'menu_generique' et 'pretty_io'.  Pour
+    compiler sous un système de type UNIX, un simple 'make' suffit. Sous
+    d'autre systèmes, ...  A quoi bon avoir un ordinateur s'il ne tourne
+    pas sous UNIX?  Bon, sérieusement, un Makefile sera bientôt
+    disponible pour Dev-Cpp, mais vous deviez vous en sortir tout seul:
+    compilez les fichier parser.h, parser.c, test.c et liez-les aux
+    fichiers objet menug.o et pretty_io.o.
+
+    Sous TURBOC, humm ..., c'est fini la préhistoire!
+
+
+GRAMMAIRE DU PARSER:
+-----------------------------------------------------------------------
+
+<full_exp>           ::= <mult_exp> | <mult_exp>+<full_exp> |
+<mult_exp>-<full_exp> <mult_exp>           ::= <unary_exp> |
+<unary_exp>*<mult_exp> | <unary_exp><lazy_mult_exp> <lazy_mult_exp>
+::= <primary_exp> | <lazy_mult_exp><primary_exp> <basic_unary_exp>
+::=  <basic_primary_exp> | -<basic_unary_exp> | +<basic_unary_exp>
+<unary_exp>          ::= <primary_exp> | -<unary_exp> | +<unary_exp>
+<basic_primary_exp>  ::= Number | (<full_exp>) |
+<function_name><unary_exp> | x | y <primary_exp>        ::=
+<basic_primary_exp> | <basic_primary_exp>^<basic_unary_exp> |
+<basic_primary_exp>² | <basic_primary_exp>/<basic_unary_exp>
+<function_name>      ::= {Tout nom de fonction à un paramètre de la
+bibliothèque mathématique}
+
+    Une expression primaire est une sous-expression telle que, des
+    parenthèses étant ajoutées autour, la valeur de l'expression entière
+    (mère) n'est pas modifiée.
+
+    Un basic_primary est un primary ne contenant pas d'élevation à une
+    puissance.  La division étant aussi considérée comme une élevation à
+    la puissance -1, un basic_primary est un primary ne contenant pas
+    les signes '^', '²' et '/'.
+
+    Une expression unaire résulte de l'application d'un signe à un unary
+    ou à un basic_primary.
+
+    Une expression multiplicative est un produit d'expression primaires,
+    et est appelée lazy_mult_exp quand le signe '*' est omis. Noter
+    qu'un lazy_mult est une partie d'un mult. Par exemple, dans le
+    mult_exp 2*xyz, xyz est un lazy_mult
+
+    Le parser applique une élevation à une puissance ou une division
+    (qui n'est autre qu'une élevation à la puissance -1) au
+    basic_primary qui précède immédiatement le symbole '^','²' ou '/'.
+    La puissance est elle même la valeur du basic_unary qui suit.
+    Ainsi, on a les correspondances suivantes:
+
+VOUS ECRIVEZ:                       LE PARSER COMPREND: -2^2
+-(2 ^ 2) -3x²y                               -3 * (x ^ 2) * y
+2x^-3y                              2 * (x ^ (-3)) * y 2^3^3
+(2 ^ 3) ^ 3 2^-3^-3                             (2 ^ (-3)) ^ (-3)
+
+    Il faut noter que les calculatrices (du moins ma CASIO fx-82MS)
+    appliquent des règles différentes suivant le signe des puissances.
+    Ainsi sur la CASIO fx-82MS: 2 ^ 3 ^ 3       ==> (2^3)^3
+    ==> 512 2 ^ -3 ^ -3     ==> (2^((-3)^(-3)))     ==> 0.974654609
+
+    Je trouve que ce serait inconsistant d'appliquer des règles
+    différentes suivant le signe de la puissance, surtout qu'on accepte
+    ici des variables et il faudrait alors trancher l'interprêtation de
+    2^x^y, où x et y peuvent avoir n'importe quel signe.
+
+TOLERANCE DU PARSER
+-----------------------------------------------------------------------
+
+    Le parser comprend même des sacrilèges mathématiques du genre 2x3y
+    (il considère cet exemple comme 6xy)! Il est très tolérant envers
+    les expressions paresseuses du genre:
+
+      VOUS ECRIVEZ:                      LE PARSER COMPREND: +2xy
+      (+2)xy -3x5y                              (-3)x5y 2cos-3y
+      2cos(-3)y 2(+-+--y)^2                        2(-y)(-y) x^3^5
+      (x^3) ^ 5 2 + 25y/-5x²25                     2 + (25(y / (-5))xx25
+
+
+QUELQUES NOTES SUR LA PERFORMANCE
+-----------------------------------------------------------------------
+
+    Le module étant massivement récursif, il y a beaucoup d'appels de
+    fonctions lors de l'évaluation d'une fonction. Ceci justifie le
+    passage de *pointeurs* en lieu et place des *valeurs* dans toutes
+    les fonctions
+
+
+A PROPOS DE LA VARIABLE 'offset'
+-----------------------------------------------------------------------
+
+    On pourrait se demander pourquoi ne pas passer directement aux
+    fonctions la sous-chaine débutant à la position à partir de laquelle
+    elles doivent lire la chaine au lieu de leur passer 2 variables
+    (clean_exp: la chaine entière et offset: la position à partir de
+    laquelle il faut le lire).
+
+    Le problème est que certaines fonction d'entrée de jeu appelent une
+    autre qui doit lire une partie de la chaine et renvoyer une valeur.
+    La fonction ainsi appelée n'aurait aucun moyen de signaler à
+    l'appelant qu'elle a déjà interpêté tel nombre de caractères.
+
+    La solution retenue est donc de permettre a tout le monde de
+    modifier la valeur de l'offset (offset_val) à travers le pointeur
+    offset.
+
+
+A PROPOS DES NOMS DE FONCTION
+-----------------------------------------------------------------------
+Les fonctions qui doivent récupérer un 'atome' et rien d'autre ont leur
+nom préfixé par get.  Toutes les fonctions sont nommées de façon assez
+directe à base des parties de la grammaire qu'elles doivent lire.
+
+
+BUGS
+-----------------------------------------------------------------------
+Le parser éliminant tout espace avant de d'évaluer l'expression, une
+expression 'valide' comme 2sin x devient après toilettage 2sinx, la
+rendant invalide puisque sinx n'est pas reconnu. Bien évidemment une
+expression correctement écrite est toujours bien évaluée (il aurait pu
+écrire 2sin(x))
+
+On peut corriger le problème en parcourant d'abord l'expression et en
+insérant les parenthèses requises. Pas encore implémenté. 
+ 
+Un dernier point: il y a dans la bibliothèque mathématique des fonctions
+à deux paramètres. Ces dernières ne sont pas encore implémentés.

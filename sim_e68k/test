@@ -1,0 +1,20 @@
+;    MOVE    #$FFFF,D0
+;    MOVEA    #$FFFF,A0
+;    MOVEA.L    #$0000FFFF,A0
+;    ADDQ.W  #8,D0
+;    ADDQ.W  #8,A0
+;    MOVEA.L    #$0000FFFF,A0
+;    ADDQ.L  #1,A0
+;    MOVE    #$FFFE,D2
+;    MOVE    #$FFFE,D1
+;    ADDQ    #3,D2
+;    ADDI.L  #3,D1
+;    MOVE    #$2,D0
+;    MOVE    #$4,D1
+;    ABCD    D0,D1
+
+    LEA     $0FF9000,A0
+    MOVE.L  #$12345678,(A0)
+    MOVE.B  (A0)+,D0
+    MOVE    (A0)+,D1
+    MOVE    D4,D5

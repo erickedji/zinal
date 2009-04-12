@@ -1,0 +1,5 @@
+* Test des itérations bornées dan le style
+* for(i = 0; i < n; i++)
+        MOVE    #2,D0
+LOOP    NOP
+        DBEQ    D0,LOOP

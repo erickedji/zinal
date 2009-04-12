@@ -1,0 +1,46 @@
+
+- A list *is* a pointer to its first node !
+
+- The library allocates a lot of memory and doesn't free anything
+  That's mainly because the linked lists created here are used
+  by the code that includes CLIST. You should not delete something
+  used by another one! 
+  I am planning to implement a garbage collector (perhaps a garbage
+  collection will occur when a malloc fails [very basic!])
+
+- The main difference between cons and append is that cons's first
+  argument is a CL_DATA_TYPE: we cons 'data' with a 'list'. Append
+  operates on list on doesn't need to return a list since the result
+  is the first list (it just gets longuer)
+
+- A file using this library should include clist.h and modify
+  it with the appropriate data structure like this:
+
+typedef struct _data{
+ ...
+} my_data_type;
+
+typedef struct _hdata{
+ ...
+} my_hdata_type;
+
+typedef struct _node{
+ my_data_type my_data_var;
+ struct _node * next;
+} my_node_type;
+
+typedef struct _head{
+my_hdata_type my_hdata_var;
+ my_node_type * next;
+} my_head_type;
+
+#define CL_NODE_TYPE my_node_type
+#define CL_DATA_TYPE my_data_type
+#define CL_DATA_VAR  my_data_var
+#define CL_HEAD_TYPE my_head_type   // #define CL_HEAD_TYPE  CL_NODE_TYPE for simple lists
+#define CL_HDATA_TYPE my_hdata_type // #define CL_HDATA_TYPE CL_DATA_TYPE for simple lists   
+#define CL_HDATA_VAR  my_hdata_var  // #define CL_HDATA_VAR  CL_DATA_VAR for simple lists    
+
+::I've changed my mind! separate simple list code and enhanced list code so the head stuff
+appears only in the enhanced list library. The above code will serve for the enhanced list lib
+

@@ -1,0 +1,352 @@
+
+\documentclass[a4,11pt]{article}
+
+%%% THIS DOCUMENT USES HYPERLATEX version 2.0
+%   It can be converted to a normal LaTeX2e document by
+%     checking the lines after the comment: %% HYPERLATEX
+
+%% HYPERLATEX
+\usepackage{hyperlatex}
+
+%% HYPERLATEX
+%%%% Hyperlatex preamble
+\htmltitle{e68k Online Guide}
+\htmllevel{html3.2}
+\htmladdress{\copyright \xlink{Miguel
+    Filgueiras}{index.html}, Universidade do Porto, 1992--1997}
+\htmldepth{4}
+\htmlautomenu{3}
+\htmlpanel{1}
+
+%%%%%%%%%%%
+
+\title{A Portable Environment for Programming in MC68000
+Assembly}
+
+\author{Miguel Filgueiras\\
+\\
+{\small LIACC, Universidade do
+Porto}\\
+{\small R. do Campo Alegre 823, 4150 Porto, Portugal}\\
+{\small {\tt email: mig@ncc.up.pt}}\\
+\\
+}
+
+
+\date{February 92; revised January 1997}
+
+%%%%%%%%%
+\newcommand{\esek}{{\bf e68k}}
+
+\newcommand{\comm}[1]{{\tt #1}}
+%%%%%%%%%
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+The need for providing a uniform environment for students that
+start programming in an assembly language and that may use
+computers with different processors led to the design and
+implementation of \esek, the system described in the
+sequel.
+The fact that in previous years the computers
+available to students of our department had a Motorola MC68000
+processor and the obvious benefits in using existing lecture notes on its
+assembly language (\cite{Toma91}) explain the choice of language. 
+Note that the
+%% HYPERLATEX
+\xlink{sources of \esek}{e68k.tgz}
+are public and that they may well
+be used as a skeleton for building a similar environment for another
+(not too different) language.
+
+\section{Using \esek}
+
+The main idea behind \esek\    is to provide the user with a
+programming environment similar to the ones that are traditional for
+languages like BASIC. Within the environment the user may issue
+commands to
+assemble a program, list it, run it (in normal- or debug-mode), clear the
+memory, and so on.
+
+One difference to traditional interpreter systems
+is that there is no direct input of the program text from the keyboard.
+Instead a file containing the text must be specified and it may be altered
+by calling an editor (without leaving \esek). This is the reason for
+\esek\    asking at the very start for the name of the file that
+is to be considered initially. The user is free to work with other files,
+although at any time only one file can be open.
+
+\subsection{Some Commands}
+
+A brief description of the more frequently used commands will be now
+given. Note that the set of \esek\    commands may be easily
+altered. The help facility of \esek\    gives a means of
+knowing exactly what commands are available in a particular
+implementation.
+
+\begin{description}
+\item[Getting help] The \comm{help} command, which may be used whenever
+a command
+is expected, gives the user information on which commands are
+available at the moment.
+\item[Assembling] The \comm{assemble} command opens the
+file whose name was last given and assembles the program in it. There
+will be error messages whenever the file cannot be opened or there
+are syntactic errors in the text. This command can only be used when
+there is no assembled program in the memory.
+\item[Listing] The \comm{list} command produces a listing of the
+program that has been successfully assembled, giving an error if there
+is none. For each line \esek\    shows the line number, the memory
+address at which the data or code is located in hexadecimal,
+and the actual line in the program text. An address will
+be followed either by a {\em p} (for {\em program-segment}), or by a
+{\em v} (for {\em values}, or {\em data-segment}) --- more details on
+this below. 
+\item[Running] There are two different modes for running a
+program. The {\em normal\/} mode, in which the user has no control
+on what the program is doing, is entered by using the \comm{run}
+command. The {\em debug} mode, which is explained
+below, gives the user the possibility of
+following in detail the program execution. It is entered through the
+use of \comm{debug}, and it has a distinct set of commands (that is
+why the prompt is different in this mode). Whatever the mode is,
+at the end of the execution \esek\    issues a message reporting why the
+program stopped.
+\item[Editing] The \comm{edit} command allows the
+user to make changes in the current file by calling a text editor. Which
+editor is used by default is
+implementation dependent (for instance, in a UNIX system
+the shell environment will be searched for a variable EDITOR, which if
+defined will be taken to specify the editor).
+The \comm{setedit} command
+may be used to inform \esek\    of the name of the editor to be called.
+Whenever possible \esek\    warns the user when listing or debugging
+a program for a file that has been changed after the assembling of
+the program.
+\item[Using a different file] When a program that has been successfully
+assembled is no longer needed the \comm{clear} command will
+make \esek\    forget it. To specify that a different file is to be treated
+in subsequent assembling, listing, or editing operations
+the \comm{file} command is used. It is an error to issue this command
+while there is an assembled program in memory.
+\item[Quitting] The command \comm{quit} terminates the execution of
+\esek\    and returns control to the operating system 
+\end{description}
+
+A typical sequence of commands for preparing and running a new program
+will be: \comm{edit}, to write the program text into the current file,
+\comm{assemble}, to assemble it, and \comm{run} to execute it if there
+were no errors during the assembling (otherwise the errors should
+be corrected by calling again the editor). When the results are not the
+expected ones, running the program in debug-mode will
+certainly be helpful in locating the problem.
+
+\subsection{Debugging}
+
+The \esek\    debugger is modelled after the \comm{dbx} symbolic debugger
+normally supplied with UNIX systems, its capabilities being, of
+course, only a small subset of those of \comm{dbx}. The debugger
+accepts a set of commands that enables the user to execute the
+program in memory in a controlled way and also to inspect and
+alter the (simulated) MC68000 registers and memory contents.
+The help facility may be used to ascertain what commands are
+available --- note that these will change when the program has
+been run to completion as some of them would not make sense at
+that time.
+
+When the debugger expects a command
+it will print the program line containing the instruction
+that is about to be executed (or, when the program has terminated,
+that has just been executed) and a
+special prompt asking for a command. The most important
+debugger commands are explained in the following description.
+
+\begin{description}
+\item[Step-by-step execution] The \comm{step} command will make \esek\    to
+execute the assembler instruction in the current line.
+\item[Turning the debugger off] To run the rest of program in normal-mode,
+without user intervention, the \comm{nodebug} command is used,
+while \comm{abort} will cause an immediate exit from the debugger.
+\item[Using breakpoints] The user may set and delete breakpoints at
+program lines containing executable instructions. The commands
+\comm{break} and \comm{delete} are provided for that, breakpoints
+being referred to by line numbers. The command \comm{cont}
+continues the program execution until either a breakpoint is reached
+or the program exits.
+\item[Accessing registers] The command \comm{regs} prints the 
+registers contents (in hexadecimal), whereas
+\comm{setreg}  alters the contents of a
+given register. In the latter case,  the user can specify an attribute 
+(\comm{.B}, \comm{.W}, or \comm{.L} --- the default) after the
+register name. The
+value to which the register will be set must be written according to the
+syntax of the assembler for numeric constants.
+\item[Accessing memory] The command \comm{mem}
+prints the contents of a sequence of bytes in
+memory, while \comm{setmem} alters the contents
+of such a sequence. With the former the user is asked for
+an address (in the data-segment) and the length in bytes of the
+sequence to be displayed. Memory contents will be displayed
+in hexadecimal and as characters, the character '?' meaning either
+itself or any non-printable character.
+With the latter command the user is also asked for an address
+(also in the data-segment) and for a sequence of values to be
+loaded into memory. Both the addresses and the values must be given
+according to the syntax of the assembler for numeric constants.
+\item[Listings] The \comm{list} command works as described before, while
+\comm{line} prints the current line.
+\item[Restarting] The \comm{restart} command forces the execution of
+the program from the beginning.
+\end{description}
+
+\section{The Assembly Language}
+
+The assembly language accepted by \esek\    is similar to the language
+described in \cite{HarmL85} although the following restrictions and
+differences are to be taken into account.
+
+\begin{description}
+\item[Names and expressions] Mnemonics, attributes and register names
+must be in capital letters. Names for labels may have lower-case letters,
+digits and '\_' (the underline character), but must not have periods
+and must begin with a letter (in either upper- or lower-case). Labels
+must begin at the first column of the line, and semi-colons are not
+to be used after them. For the
+time being, expressions are not allowed.
+\item[Comments] A line starting with an asterisk, preceded or not by
+blanks is taken to be a comment and discarded. Any character after
+a semi-colon in a line will  also be discarded.
+\item[Attributes] Whenever an instruction either has only one possible
+attribute, or may have different attributes that can be determined by
+the assembler, \esek\    treats the instruction as unsized and does not
+allow the user to specify an attribute.
+\item[Unimplemented instructions] A very few MC68000 instructions
+were not implemented, in particular those that can only be used in
+MC68000 supervisor mode. A suitable error message is issued when
+such an instruction is found.
+\item[Directives and pseudo-instructions] The following are provided:
+\begin{itemize}
+\item \comm{OPNF} opens a file and returns a file number that will be
+used for accessing it. It has two arguments: an address register, which
+must contain the address of a sequence of bytes terminated with a null-byte
+that specifies the name (or path) of the file, and a data register, whose
+byte 0 should be 0 for reading, 1 for writing, or 2 for appending (or
+creating) the file. In the end, the byte 0 of the destination register
+is set either to the number associated with the file, or to $-1$ whenever
+an error occurred (wrong initial value in the data register, too many
+files open, or the file could not be opened).
+\item \comm{CLSF} closes the file whose number is given in byte 0 of
+the data register used as its argument.
+\item \comm{GETC} may be used either with a single argument or with two
+arguments. The arguments must be data registers. With a single argument a
+byte is read from the standard input (normally the keyboard) into the
+byte 0 of the register. With two arguments, a byte is read from the
+file whose number (see \comm{OPNF}) is given in byte 0 of the source register
+into the byte 0 of the destination register. In this case and if the
+file number is invalid the value $-1$ is written into the byte 0 of the
+destination register.
+\item \comm{PUTC} has either a single argument or two arguments, which
+must be data register(s). With a single argument this directive
+puts the contents of the byte 0 of the register into the standard output
+(normally the screen). With two arguments, byte 0 of the source register
+specifies the file number (see \comm{OPNF}) where byte 0 of the
+destination register is to be put. In this case, byte 0 of the destination
+register will be set to $-1$ when the given file number is invalid.
+\item \comm{EXIT} has no arguments and causes the termination of the
+program being executed.
+\item \comm{END} is just used to mark the end of the program text. Any
+line after it will be disregarded.
+\item \comm{DS} (for {\em data structure}), may have the usual
+attributes for byte, word (the default), and long, and has a single
+argument which is a numeric
+constant specifying the number of positions of the given length to be
+allocated in the data-segment.
+\item \comm{DC} (for {\em data constants}), may also have the usual
+attributes as for \comm{DS}, and its argument is a constant list
+consisting of constants separated by commas. The constants will be put
+in successive positions of the given length in the data-segment. When
+the attribute is \comm{.B} a sequence of characters enclosed by double
+quotes is taken to be a character string, and the ASCII codes of the
+characters in it are treated as the constants to be stored. \end{itemize}
+\end{description}
+
+Although not being the case with most computers having a MC68000
+processor, \esek\    makes a separation between two memory segments:
+the {\em program-segment} and the {\em data-segment}. This is due to
+the fact that the internal representation of MC68000 instructions in \esek\   
+is not at all their binary codes. It would therefore be a bad idea to
+give the user access to memory locations whose contents are different
+from the expected ones. When assembling a program \esek\   
+automatically keeps track of what is to be put in each of both
+segments, even when executable instructions are mixed with data
+storage directives. As it is usual with this kind of architecture, the
+assembly program cannot access the program-segment for storing or
+getting data and cannot execute instruction codes
+stored in the data-segment.
+
+The usual big-endian behaviour of the MC68000 is implemented,
+irrespective of the processor running \esek, if \esek\  is compiled
+with the correct options (as described in the next section).
+
+Another point that is worth mentioning is that messages caused by
+syntactic errors were intentionally left not too detailed. This may help
+the user in learning the syntax and in being prepared to use those many
+hermitic, closed and horrible systems that still users have to use in
+real life.
+
+\section{Implementation}
+
+The original implementation of \esek\    was done using the C language
+in a Sun-4 running
+UNIX. The dependency with respect to UNIX was deliberately kept low
+to increase the portability of the environment, and amounts to some
+routines for checking the modification date of a file, for defining
+the default editor, and for calling an editor (by executing a shell
+command of the form {\tt editor filename}).
+
+The \esek\  sources should be compiled with the correct options for the
+actual processor and operating system. In some Unix environments the
+options will be set automatically. In any case the 
+%% HYPERLATEX
+\xlink{header file}{e68k.h.txt}
+should be checked in what concerns the definitions of {\tt BIGENDIAN}, {\tt
+LITTLEENDIAN} and {\tt UNIX}, {\tt DOS} identifiers.
+
+The information on the syntax of the assembler instructions and
+on the commands accepted by \esek\    was as much
+as possible given, in the program header file,  as initial values to arrays.
+In this way, additions or modifications may be easily done. Also,
+comments were provided as an explanation on what each routine is
+expected to do, and whenever some obscure solution was used
+(fortunately, there are not many of them).
+
+\section{Acknowledgements}
+
+I would like to express my sincere thanks to Pe\-dro Bal\-ta\-zar
+Vas\-con\-ce\-los, who gladly accepted to undertake the fastidious
+task of checking that \esek\    was executing in a honest way the
+MC68000 instructions. He also started the work on the configuration
+for different operating systems and processors.
+
+Nelma Moreira and Rog\'erio Reis helped a lot in correcting the bugs
+that Ana Paula Tom\'as very effectively detected.
+
+\begin{thebibliography}{X}
+
+\bibitem[A. P. Tom\'as 1991]{Toma91}
+Ana Paula Tom\'as, Notas e Exerc\'{\i}cios de Pro\-gra\-ma\-\c{c}\~ao
+em MC68000. Fa\-cul\-da\-de de Ci\-\^en\-ci\-as,
+Uni\-ver\-si\-da\-de do Por\-to, 1991.
+
+\bibitem[Harman and Lawson 1985]{HarmL85}
+Thomas L. Harman and B. Lawson, {\em The Motorola MC68000
+Microprocessor Family}. Prentice-Hall, 1985.
+
+\end{thebibliography}
+
+\end{document}
+
+

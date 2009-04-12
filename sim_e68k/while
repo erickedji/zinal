@@ -1,0 +1,16 @@
+* exemple de boucle while(a==b)
+        NOP
+LOOP    SUB     D0,D1
+        BNE     FIN
+        NOP             ; LOOP BODY
+        BRA     LOOP
+FIN     NOP
+
+* exemple de boucle while(a!=b)
+        NOP
+BCL     SUB     D0,D1
+        BEQ     END
+        NOP
+        BRA     BCL
+END     NOP
+

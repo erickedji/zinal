@@ -1,0 +1,79 @@
+; Détection de changement sur le port A de la PIA.
+; Eric KEDJI <eric_kedji@yahoo.fr>
+; D0: buffer de lecture
+; D1: backup
+; D2: valeur
+;
+; Sous le 68000, il décommenter les instructions commentées
+
+;DORA       EQU     $044001
+;CRA        EQU     $044003
+;DORB       EQU     $044005
+;CRB        EQU     $044007
+
+;           LEA     PILE(PC),A7
+
+; le NOP suivant permet au simulateur de fixer la colonne où
+; commencent les instructions.
+            NOP
+FOREVER     BSR     LIRE
+            MOVE.B  D0,D1       ; backup = lire()
+            BSR     LIRE
+            MOVE.B  D0,D2       ; valeur = lire()
+WHILE       CMP.B   D1,D2
+            BNE     ENDW
+            MOVE    D2,D1       ; backup = valeur
+            BSR     LIRE
+            MOVE.B  D0,D2       ; valeur = lire()
+            BRA     WHILE
+ENDW        BSR     AFFICHER
+            BRA     FOREVER
+
+AFFICHER    MOVE    #67,D7
+            PUTC    D7
+            RTS
+
+LIRE        CLR     D0
+            MOVE.B  D0,CRA
+            MOVE.B  #0,DORA
+            MOVE.B  #$04,CRA
+            MOVE.B  DORA,D0
+            RTS
+
+PIA         DS.B    1
+DORA        DS.B    1
+            DS.B    1
+CRA         DS.B    1
+            DS.B    1
+DORB        DS.B    1
+            DS.B    1
+CRB         DS.B    1
+
+;AFFICHER    PEA     MSG
+;            MOVE    #9,-(A7)
+;            TRAP    #1
+;            ADDQ    #6,A7
+;            RTS
+
+;MSG        DC      10,'DETECTION DE CHANGEMENT D',39,'ETAT',10,0
+;STACK      DC      "Omit needless words (William S. Jr)"
+;PILE       DS      1
+
+            END                 ; propre au simulateur: fin du programme
+
+;Programme C:
+;========================================================================
+;
+;        int backup, valeur;
+;        while (1) {
+;            backup = lire();
+;            valeur = lire();
+;            while (valeur == backup) {
+;                backup = valeur;
+;                valeur = lire();
+;            }
+;            printf("\n\tChangement de valeur détecté");
+;        }
+;
+;========================================================================
+

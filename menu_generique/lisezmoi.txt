@@ -1,0 +1,42 @@
+:::: MENU GENERIQUE ::::
+
+Auteur   : Eric KEDJI (eric_kedji@yahoo.fr)
+Date     : 24 Janvier 2007, 16:00
+Licence  : GPL
+
+Le nombre de situations demandant d'afficher une liste de choix,
+récupérér le choix de l'utilisateur et lancer le traitement
+approprié,le nombre de telles situations donc, devenant important,
+cette fonction générique est ecrite - par un garçon particulierement
+paresseux :-) - pour s'en charger.
+
+:::: UTILISATION DU MENU GENERIQUE ::::
+
+La fonction menug() prend comme premier paramètre le nombre d'options.
+Le autres paramètre sont des paires ("description de l'option",
+"fonction a appeler") dans cet ordre.
+
+Exemple d'appel:
+     menug(3,"Option 1",fonction1,"Option 2",fonction2,"Quitter",bye);
+
+Les fonctions doivent toutes renvoyer void (normal pour un traitement
+appelé par un menu non?)
+
+Une utilisation rationnelle devrait définir un wrapper (menu() par
+exemple) qui se chargera d'appeler menug().
+
+:::: COMPILATION ::::
+
+- Le fichier menug.c contient la fonction proprement dite
+- Le fichier menug.h est l'entête a inclure dans tous les
+  les fichiers utilisant la fonction menug
+- Le fichier test.c fait ce que son nom dit :-)
+
+Sous unix:
+    - make pour tout compiler (sort l'éxécutable test_menug)
+    - make menug.o pour compiler rien que le menu
+
+Pour utiliser le menu générique dans un projet, il faut
+compiler le projet avec avec le fichier objet menug.o et
+inclure le fichier menug.h dans tous les fichier faisant
+appel au menu générique. 

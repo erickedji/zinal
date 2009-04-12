@@ -1,0 +1,297 @@
+ALPHA	sim_e68k/e68k.h	/^#define ALPHA(c)  (('a' <= c && c <= 'z') || ('A' /
+ALPHANUM	sim_e68k/e68k.h	/^#define ALPHANUM(c)  (('a'<=c && c<='z')||('A'<=c /
+BLANK	sim_e68k/e68k.h	/^#define BLANK(c)  (c && c <= ' ')$/
+CHIFFRE	abalone/abalone.c	/^#define CHIFFRE(c) (('1' <= *(c)) && (*(c) <= '9')/
+CQ_empty	cqueue/cqueue.c	/^CQ_empty(CQ_queue * queue)$/
+CQ_full	cqueue/cqueue.c	/^CQ_full(CQ_queue * queue)$/
+CQ_length	cqueue/cqueue.c	/^CQ_length(CQ_queue * queue)$/
+CQ_pop	cqueue/cqueue.c	/^CQ_pop(CQ_queue * queue)$/
+CQ_print	cqueue/cqueue.c	/^CQ_print(CQ_queue * queue, void (* print_element)(/
+CQ_push	cqueue/cqueue.c	/^CQ_push(CQ_queue * queue, CQ_element * element)$/
+CQ_reset	cqueue/cqueue.c	/^CQ_reset(CQ_queue * queue)$/
+CS_empty	cstack/cstack.c	/^CS_empty(CS_stack * stack)$/
+CS_full	cstack/cstack.c	/^CS_full(CS_stack * stack)$/
+CS_pop	cstack/cstack.c	/^CS_pop(CS_stack * stack)$/
+CS_print_stack	cstack/cstack.c	/^CS_print_stack(CS_stack * stack, void (* print_ele/
+CS_push	cstack/cstack.c	/^CS_push(CS_stack * stack, CS_element * element)$/
+CS_raz	cstack/cstack.c	/^CS_raz(CS_stack * stack)$/
+DIGIT	sim_e68k/e68k.h	/^#define DIGIT(c)  ('0'<=c && c<='9')$/
+ISZERO	sim_e68k/e68k.h	/^#define ISZERO(x,a) (!(x&MaskA[a]))$/
+LETTRE	abalone/abalone.c	/^#define LETTRE(c) (('A' <= toupper(*(c))) && (toup/
+MALLOC	lagrange/lagrange.c	/^#define MALLOC(type,n) (type * ) malloc(n * sizeof/
+MARBLE_IS_UNSET	abalone/abalone.c	/^#define MARBLE_IS_UNSET(m_pos) (((m_pos).x == -1) /
+MG_quitter	menu_generique/menug.c	/^void MG_quitter(void)$/
+M_AT	abalone/abalone.c	/^#define M_AT(m_pos) board.grid[(m_pos).x][(m_pos)./
+Mabalone	abalone/abalone.c	/^int main(void)$/
+Malloc	jacobi_g-s/jacobi_g-s.c	/^#define Malloc(taille,type) (type *) malloc(taille/
+Mdice_game	dice_game/dice_game.c	/^int main(void)$/
+Mdis	disassembler/dis.c	/^main()$/
+Mdiscrety	discrety/discrety.c	/^int main(void)$/
+Me68k	sim_e68k/e68k.c	/^int main(int argc, char ** argv)$/
+Mequadiff_num	equadiff_num/equadiff_num.c	/^int main(void)$/
+Mjacobi_g-s	jacobi_g-s/jacobi_g-s.c	/^int main(void)$/
+Mlagrange	lagrange/lagrange.c	/^int main(void)$/
+Mmain	disassembler/main.c	/^int main(void)$/
+Mtest	cbtree/test.c	/^int main(void)$/
+NUMIN	sim_e68k/e68k.h	/^#define NUMIN(c)  (('0'<=c && c<='9') || c=='@' ||/
+OUT_OF_BOARD	abalone/abalone.c	/^#define OUT_OF_BOARD(m_pos) (abs((m_pos).x - (m_po/
+RMBITSET	sim_e68k/e68k.h	/^#define RMBITSET(x,a) (x&MaskH[a])$/
+SET_POS	abalone/abalone.c	/^#define SET_POS(m_pos,player_type) board.grid[(m_p/
+STR	discrety/discrety.c	/^#define STR(s) #s$/
+TRUE	sim_e68k/e68k.h	/^#define TRUE(x) (x ? 0xFF : 0)$/
+UNSET_MARBLE	abalone/abalone.c	/^#define UNSET_MARBLE(m_pos) (m_pos).x = -1; (m_pos/
+XSTR	discrety/discrety.c	/^#define XSTR(s) STR(s)$/
+addc	sim_e68k/e68k.c	/^ADDR addc(d,s,at)    \/* add and set CCR *\/$/
+afficher	dice_game/dice_game.c	/^void afficher(void)$/
+afteralnum	sim_e68k/e68k.c	/^char *afteralnum(s1,s2)  \/* s1=conc(s2,result), *r/
+align	sim_e68k/e68k.c	/^int align(i,a)        \/* align index into data seg/
+append	clist/clist.c	/^append(int list_count, CL_NODE_TYPE * first_list, /
+arglgth	sim_e68k/e68k.c	/^ADDR arglgth(m,ta,a)    \/* compute length in bytes/
+ass	sim_e68k/e68k.c	/^void ass()        \/* assemble entire program *\/$/
+asslineerr	sim_e68k/e68k.c	/^int asslineerr(s)  \/* assemble single line *\/$/
+attribute	sim_e68k/e68k.c	/^IATTR attribute(s,m,sp)   \/* parse attribute for m/
+badarg	sim_e68k/e68k.c	/^int badarg(s,n,sp)   \/* parse argument number n+1 /
+badargpair	sim_e68k/e68k.c	/^int badargpair(m,a)    \/* check compatibility of a/
+badargs	sim_e68k/e68k.c	/^int badargs(s,m,a)  \/* parse arguments for m.a *\/$/
+badassdir	sim_e68k/e68k.c	/^int badassdir(s,m,a)  \/* parse arguments and obey /
+badattrdisplreg	sim_e68k/e68k.c	/^int badattrdisplreg(s,pa,pv,sp)   \/* parse after l/
+badbreak	sim_e68k/e68k.c	/^int badbreak(s)      \/* check argument of setting /
+badclist	sim_e68k/e68k.c	/^int badclist(s,l,a,pv,sp)  \/* parse constant list /
+baddelete	sim_e68k/e68k.c	/^int baddelete(s)      \/* check argument of deletin/
+badeol	sim_e68k/e68k.c	/^int badeol(s)       \/* anything other than comment/
+badint	sim_e68k/e68k.c	/^int badint(s,pv,sp)       \/* parse integer *\/$/
+badlength	sim_e68k/e68k.c	/^int badlength(v,a)   \/* check compatibility of val/
+badnum	sim_e68k/e68k.c	/^int badnum(s,p,sp)  \/* parse non-negative number */
+badprintmem	sim_e68k/e68k.c	/^int badprintmem(s)   \/* check arguments and print /
+badrange	sim_e68k/e68k.c	/^int badrange(r1,r2)   \/* check register range *\/$/
+badreg	sim_e68k/e68k.c	/^int badreg(s,pv,sp)     \/* parse register name *\/$/
+badreglist	sim_e68k/e68k.c	/^int badreglist(s,r,pv,sp)  \/* parse rest of regist/
+badsinglearg	sim_e68k/e68k.c	/^int badsinglearg(m,a,ar)  \/* check compatibility o/
+badstr	sim_e68k/e68k.c	/^int badstr(s,p,c,sp)  \/* string of up to 4 chars, /
+badvalformem	sim_e68k/e68k.c	/^int badvalformem(s)       \/* parse and get values /
+badvalforreg	sim_e68k/e68k.c	/^int badvalforreg(s)       \/* parse and get value f/
+basic_unary_exp	parser/parser.c	/^basic_unary_exp(char * clean_exp, int * offset, do/
+bitchg	sim_e68k/e68k.c	/^ADDR bitchg(v,b)    \/* change bit b on value v, se/
+bitclr	sim_e68k/e68k.c	/^ADDR bitclr(v,b)    \/* clear bit b on value v, set/
+bitset	sim_e68k/e68k.c	/^ADDR bitset(v,b)    \/* set bit b on value v, set Z/
+blccpy	sim_e68k/e68k.c	/^void blccpy(p,v,a,d)  \/* copy block from p, v cell/
+bon_coup	dice_game/dice_game.c	/^int bon_coup(int coup)$/
+checkprogversion	sim_e68k/e68k.c	/^void checkprogversion()    \/* check version of pro/
+chgrepr	sim_e68k/e68k.c	/^ADDR chgrepr(v,a)      \/* changes representation f/
+clear	sim_e68k/e68k.c	/^void clear()$/
+close_enought	jacobi_g-s/jacobi_g-s.c	/^int close_enought(double * x_k, double * x_kplus1)/
+compattr	sim_e68k/e68k.c	/^IATTR compattr(a,m)   \/* check compatibility betwe/
+cond	sim_e68k/e68k.c	/^int cond(c)         \/* evaluate a condition *\/$/
+cons	clist/clist.c	/^cons(CL_DATA_TYPE data, CL_NODE_TYPE ** list_point/
+convdig	sim_e68k/e68k.c	/^int convdig(c)    \/* convert digit to decimal *\/$/
+convert	sim_e68k/e68k.c	/^ADDR convert(v,a)    \/* convert long according to /
+count_trees	cbtree/cbtree.c	/^count_trees(int num_keys)$/
+currentline	sim_e68k/e68k.c	/^int currentline()    \/* get line for current instr/
+debugit	sim_e68k/e68k.c	/^int debugit(c)      \/* debug before instruction ex/
+decode_broadside_mvt	abalone/abalone.c	/^void decode_broadside_mvt(char * move_string)$/
+decode_inline_mvt	abalone/abalone.c	/^void decode_inline_mvt(char * move_string)$/
+decode_move_string	abalone/abalone.c	/^int decode_move_string(char * str)$/
+decrreg	sim_e68k/e68k.c	/^ADDR decrreg(r,a)   \/* decrement register contents/
+digitb	sim_e68k/e68k.c	/^int digitb(c,b)    \/* check if good digit for base/
+dis	disassembler/dis.c	/^void *dis(void *c,char *s)$/
+divoflow	sim_e68k/e68k.c	/^int divoflow(x)      \/* test division overflow *\/$/
+docommand	sim_e68k/e68k.c	/^int docommand()$/
+double_tree	cbtree/cbtree.c	/^double_tree(node * bst)$/
+du_clavier	lagrange/lagrange.c	/^void du_clavier(void)$/
+du_fichier	lagrange/lagrange.c	/^void du_fichier(void)$/
+dummy1	menu_generique/test.c	/^void dummy1(void)$/
+dummy2	menu_generique/test.c	/^void dummy2(void)$/
+dummy3	menu_generique/test.c	/^void dummy3(void)$/
+edit	sim_e68k/e68k.c	/^void edit()         \/* invoke editor *\/$/
+effective_address	disassembler/dis.c	/^static unsigned *effective_address(unsigned *a,cha/
+egauss	elimination_gaussienne/egauss.c	/^void egauss(int n, double * a, double * b, double /
+erreur	pretty_io/pretty_io.c	/^void erreur(const char * format, ...)$/
+error	sim_e68k/e68k.c	/^int error(m,s)$/
+euler	equadiff_num/equadiff_num.c	/^void euler(void)$/
+eval	parser/parser.c	/^eval(char * expression, double * x, double * y)$/
+evalf	parser/test.c	/^void evalf(void)$/
+evaluer	lagrange/lagrange.c	/^evaluer(void)$/
+execinstr	sim_e68k/e68k.c	/^EXECERR execinstr()   \/* execute instruction at (P/
+f	equadiff_num/equadiff_num.c	/^double f(double x, double y)$/
+fetch	sim_e68k/e68k.c	/^MNM fetch()     \/* fetch mnemonic, check it and pr/
+fichier_existe	open_file/open_file.c	/^fichier_existe(char * nom_fichier)$/
+full_exp	parser/parser.c	/^full_exp(char * clean_exp, int * offset, double * /
+generic_io	pretty_io/pretty_io.c	/^generic_io(const char * begin_with, const char * e/
+get_all_powers	parser/parser.c	/^get_all_powers(char * clean_exp, int * offset, dou/
+get_basic_primary	parser/parser.c	/^get_basic_primary(char * clean_exp, int * offset, /
+get_data	jacobi_g-s/jacobi_g-s.c	/^void get_data(void)$/
+get_dir	abalone/abalone.c	/^move_d get_dir(int i1, int j1, int i2, int j2)$/
+get_function	parser/parser.c	/^get_function(char * clean_exp, int * offset, doubl/
+get_move_string	abalone/abalone.c	/^void get_move_string(char * move_string)$/
+get_number	parser/parser.c	/^get_number(char * clean_exp, int * offset)$/
+getanswer	sim_e68k/e68k.c	/^void getanswer(m,n)  \/* get answer in string *\/$/
+getcommand	sim_e68k/e68k.c	/^int getcommand(prompt,c0,cn,ns)    \/* get command /
+getctrladdr	sim_e68k/e68k.c	/^ADDR getctrladdr(t,p)    \/* compute control addres/
+getf	parser/test.c	/^void getf(void)$/
+getline	sim_e68k/e68k.c	/^void getline(f,s)    \/* strips blanks at the end */
+getmem	sim_e68k/e68k.c	/^ADDR getmem(ad,at)      \/* get memory contents add/
+getpaddr	sim_e68k/e68k.c	/^ADDR getpaddr(t,p)  \/* get PADDR from argument *\/$/
+getreg	sim_e68k/e68k.c	/^ADDR getreg(r,a)    \/* get register contents, attr/
+goodlv	sim_e68k/e68k.c	/^int goodlv(lv)       \/* check pointer against data/
+gs	jacobi_g-s/jacobi_g-s.c	/^void gs(double * x, double * x_tmp)$/
+has_path_sum	cbtree/cbtree.c	/^has_path_sum(node * bt, int value)$/
+help	sim_e68k/e68k.c	/^void help(c0,cn,ns,es)$/
+in	sim_e68k/e68k.c	/^int in(r,m)           \/* check if register is in r/
+info	pretty_io/pretty_io.c	/^info(const char * format, ...)$/
+init_game	abalone/abalone.c	/^void init_game(void)$/
+initialiser	dice_game/dice_game.c	/^void initialiser(void)$/
+initrun	sim_e68k/e68k.c	/^void initrun()    \/* initialize before running pro/
+insert	cbtree/cbtree.c	/^insert(node ** bst, data * new_data, cmp_func comp/
+int_cmp	cbtree/test.c	/^int_cmp(int * a, int * b)$/
+invite	pretty_io/pretty_io.c	/^invite(const char * format, ...)$/
+is_BST	cbtree/cbtree.c	/^is_BST(node * bt)$/
+is_BST_amateur	cbtree/cbtree.c	/^is_BST_amateur(node * bt, cmp_func compare)$/
+is_BST_rec	cbtree/cbtree.c	/^is_BST_rec(node * bt, int min, int max)$/
+jacobi	jacobi_g-s/jacobi_g-s.c	/^void jacobi(double * x, double * x_tmp)$/
+jouer	dice_game/dice_game.c	/^int jouer(void)$/
+jumpaddr	sim_e68k/e68k.c	/^void jumpaddr(t,p)  \/* jump using PADDR *\/$/
+jumpmaddr	sim_e68k/e68k.c	/^void jumpmaddr(a)  \/* jump to memory address *\/$/
+l	lagrange/lagrange.c	/^l(double xtest, int indice)$/
+labelserr	sim_e68k/e68k.c	/^int labelserr()   \/* check all labels defined *\/$/
+lazy_mult_exp	parser/parser.c	/^lazy_mult_exp(char * clean_exp, int * offset, doub/
+lblval	sim_e68k/e68k.c	/^ADDR lblval(l)   \/* get value associated with labe/
+leftvalue	sim_e68k/e68k.c	/^BYTE *leftvalue(t,p,at)   \/* compute pointer to lo/
+length	clist/clist.c	/^length(CL_NODE_TYPE * thelist)$/
+list	clist/clist.c	/^list(int node_count, ...)$/
+list_copy	clist/clist.c	/^list_copy(CL_NODE_TYPE * thelist)$/
+list_head	clist/clist.c	/^list_head(CL_NODE_TYPE * thelist, int k)$/
+list_ref	clist/clist.c	/^list_ref(CL_NODE_TYPE * thelist, int index)$/
+list_tail	clist/clist.c	/^list_tail(CL_NODE_TYPE * thelist, int k)$/
+lkdeflabel	sim_e68k/e68k.c	/^int lkdeflabel(s,a,t)  \/* lookup and if new define/
+lkuplabel	sim_e68k/e68k.c	/^int lkuplabel(s)   \/* lookup in table *\/$/
+lkupmnm	sim_e68k/e68k.c	/^MNM lkupmnm(s)  \/* lookup mnemonic *\/$/
+locateaddr	sim_e68k/e68k.c	/^BYTE *locateaddr(a)  \/* get pointer to cell with m/
+locatepaddr	sim_e68k/e68k.c	/^int locatepaddr(a)  \/* get index in Code for progr/
+lookup	cbtree/cbtree.c	/^lookup(node * bst, data * target, cmp_func compare/
+make_node	cbtree/cbtree.c	/^make_node(data * new_data)$/
+makelbl	sim_e68k/e68k.c	/^int makelbl(v)    \/* make label for value v *\/$/
+malloc_failed	clist/clist.c	/^malloc_failed(char * which_function, char * where)/
+maskreg	sim_e68k/e68k.c	/^ADDR maskreg(r)   \/* register to its bit-mask repr/
+max_depth	cbtree/cbtree.c	/^max_depth(node * bt)$/
+max_value	cbtree/cbtree.c	/^max_value(node * bst, cmp_func compare)$/
+memcont	sim_e68k/e68k.c	/^ADDR memcont(p,at)      \/* get memory contents poi/
+menu	dice_game/dice_game.c	/^void menu(void)$/
+menug	menu_generique/menug.c	/^void menug(int nb_options, ...)$/
+min_value	cbtree/cbtree.c	/^min_value(node * bst, cmp_func compare)$/
+mirror	cbtree/cbtree.c	/^mirror(node * bt)$/
+mnemonic	sim_e68k/e68k.c	/^MNM mnemonic(s,sp)  \/* check mnemonic *\/$/
+mult_exp	parser/parser.c	/^mult_exp(char * clean_exp, int * offset, double * /
+my_malloc	equadiff_num/equadiff_num.c	/^void my_malloc(void)$/
+myabs	sim_e68k/e68k.c	/^ADDR myabs(v)   \/* absolute value *\/$/
+neville_rec	lagrange/lagrange.c	/^neville_rec(int debut, int fin, double xtest)$/
+newlabel	sim_e68k/e68k.c	/^int newlabel(s,a,t)   \/* add label, init to a, t */
+next_in_dir	abalone/abalone.c	/^marble_pos next_in_dir(move_d dir, marble_pos ref)/
+noprogfile	sim_e68k/e68k.c	/^int noprogfile()   \/* open program file for input /
+not_known	disassembler/dis.c	/^static unsigned *not_known(unsigned *c,char *s,int/
+notargcompat	sim_e68k/e68k.c	/^int notargcompat(m,a,g,pa,pv)  \/* check arg type c/
+notatbreak	sim_e68k/e68k.c	/^int notatbreak(ln)    \/* check whether debugger mu/
+one_player	dice_game/dice_game.c	/^void one_player(void)$/
+open_a	open_file/open_file.c	/^open_a(char * nom_fichier, int plus)$/
+open_r	open_file/open_file.c	/^open_r(char * nom_fichier, int plus)$/
+open_w	open_file/open_file.c	/^open_w(char * nom_fichier, int plus)$/
+ouvrir_fichier	lagrange/lagrange.c	/^ouvrir_fichier(void)$/
+p	lagrange/lagrange.c	/^p(double xtest)$/
+p_neville	lagrange/lagrange.c	/^p_neville(double xtest)$/
+pause	pretty_io/pretty_io.c	/^void pause(void)$/
+play	abalone/abalone.c	/^void play(void)$/
+pointer_to_last	clist/clist.c	/^pointer_to_last(CL_NODE_TYPE * thelist)$/
+primary_exp	parser/parser.c	/^primary_exp(char * clean_exp, int * offset, double/
+print_data	clist/test.c	/^print_data(my_data_type data)$/
+print_element	cqueue/test.c	/^void print_element(CQ_element * element)$/
+print_int	cbtree/test.c	/^print_int(int * printme)$/
+print_list	clist/clist.c	/^print_list(CL_NODE_TYPE * thelist, void (* print_d/
+print_paths	cbtree/cbtree.c	/^print_paths(node * bt, void (* print_data)())$/
+print_paths_rec	cbtree/cbtree.c	/^print_paths_rec(node * bt, data ** path, int path_/
+print_post_order	cbtree/cbtree.c	/^print_post_order(node * bt, void (* print_data)())/
+print_spaces	abalone/abalone.c	/^void print_spaces(int n)$/
+print_tree	cbtree/cbtree.c	/^print_tree(node * bst, void (* print_data)())$/
+printline	sim_e68k/e68k.c	/^void printline(ln,s)    \/* print text line *\/$/
+printmem16	sim_e68k/e68k.c	/^void printmem16(n,lv)  \/* print up to 16 first byt/
+printregs	sim_e68k/e68k.c	/^void printregs()      \/* display registers *\/$/
+push	cqueue/test.c	/^void push(char element)$/
+quel_nom	open_file/open_file.c	/^quel_nom(void)$/
+quitter	lagrange/lagrange.c	/^void quitter(void)$/
+redeflbl	sim_e68k/e68k.c	/^int redeflbl(t,v)   \/* redefine label(s) of curren/
+reset	equadiff_num/equadiff_num.c	/^void reset(void)$/
+rightvalue	sim_e68k/e68k.c	/^ADDR rightvalue(t,p,at,plv)   \/* compute value of /
+rk1	equadiff_num/equadiff_num.c	/^void rk1(void)$/
+rk2	equadiff_num/equadiff_num.c	/^void rk2(void)$/
+rk3	equadiff_num/equadiff_num.c	/^void rk3(void)$/
+run	sim_e68k/e68k.c	/^void run()    \/* execute program in memory *\/$/
+saisie_donnees	lagrange/lagrange.c	/^saisie_donnees(void)$/
+same_tree	cbtree/cbtree.c	/^same_tree(node * bt_a, node * bt_b, cmp_func compa/
+sauvegarder	equadiff_num/equadiff_num.c	/^void sauvegarder(void)$/
+save_data	discrety/discrety.c	/^void save_data(void)$/
+set_ab	discrety/discrety.c	/^void set_ab(void)$/
+set_abn	equadiff_num/equadiff_num.c	/^void set_abn(void)$/
+set_all	discrety/discrety.c	/^void set_all(void)$/
+set_epsilon	jacobi_g-s/jacobi_g-s.c	/^void set_epsilon(void)$/
+set_f	discrety/discrety.c	/^void set_f(void)$/
+set_n	discrety/discrety.c	/^void set_n(void)$/
+set_target	dice_game/dice_game.c	/^void set_target(void)$/
+set_y0	equadiff_num/equadiff_num.c	/^void set_y0(void)$/
+setalt	sim_e68k/e68k.c	/^void setalt(t,p,at,v)    \/* set alterable memory t/
+setaltc	sim_e68k/e68k.c	/^void setaltc(t,p,at,v)    \/* set alterable memory /
+setatlv	sim_e68k/e68k.c	/^void setatlv(lv,t,at,v)    \/* set memory at addres/
+setatlvc	sim_e68k/e68k.c	/^void setatlvc(lv,t,at,v)    \/* set memory at addre/
+setcond	sim_e68k/e68k.c	/^ADDR setcond(c,f)    \/* set condition bit in CCR t/
+seteditor	sim_e68k/e68k.c	/^void seteditor()     \/* get info on default editor/
+setmem	sim_e68k/e68k.c	/^void setmem(ad,at,v)    \/* set memory at address a/
+setprogversion	sim_e68k/e68k.c	/^void setprogversion()    \/* remember which version/
+setreg	sim_e68k/e68k.c	/^void setreg(r,a,v)    \/* set register, attribute a/
+setregc	sim_e68k/e68k.c	/^void setregc(r,a,v)    \/* set register, attribute /
+shift	sim_e68k/e68k.c	/^ADDR shift(m,at,c,v)         \/* shift v c bits, se/
+show	sim_e68k/e68k.c	/^void show(ln)        \/* get and print text line *\//
+show_board	abalone/abalone.c	/^void show_board(void)$/
+show_results	jacobi_g-s/jacobi_g-s.c	/^void show_results(int nb_iterations)$/
+size	cbtree/cbtree.c	/^size(node * bt)$/
+skipblanks	sim_e68k/e68k.c	/^char *skipblanks(s)  \/* skip over blanks *\/$/
+skiptoeof	sim_e68k/e68k.c	/^void skiptoeof(f)   \/* skip to eof *\/$/
+sublist	clist/clist.c	/^sublist(CL_NODE_TYPE * thelist, int start, int sto/
+subtrc	sim_e68k/e68k.c	/^ADDR subtrc(d,s,at)    \/* subtract and set CCR *\/$/
+titre	pretty_io/pretty_io.c	/^titre(const char * titre)$/
+two_players	dice_game/dice_game.c	/^void two_players(void)$/
+type_1	disassembler/dis.c	/^static unsigned *type_1(unsigned *c,char *s,int in/
+type_10	disassembler/dis.c	/^static unsigned *type_10(unsigned *c,char *s,int i/
+type_11	disassembler/dis.c	/^static unsigned *type_11(unsigned *c,char *s,int i/
+type_12	disassembler/dis.c	/^static unsigned *type_12(unsigned *c,char *s,int i/
+type_13	disassembler/dis.c	/^static unsigned *type_13(unsigned *c,char *s,int i/
+type_14	disassembler/dis.c	/^static unsigned *type_14(unsigned *c,char *s,int i/
+type_15	disassembler/dis.c	/^static unsigned *type_15(unsigned *c,char *s,int i/
+type_16	disassembler/dis.c	/^static unsigned *type_16(unsigned *c,char *s,int i/
+type_17	disassembler/dis.c	/^static unsigned *type_17(unsigned *c,char *s,int i/
+type_18	disassembler/dis.c	/^static unsigned *type_18(unsigned *c,char *s,int i/
+type_19	disassembler/dis.c	/^static unsigned *type_19(unsigned *c,char *s,int i/
+type_2	disassembler/dis.c	/^static unsigned *type_2(unsigned *c,char *s,int in/
+type_20	disassembler/dis.c	/^static unsigned *type_20(unsigned *c,char *s,int i/
+type_21	disassembler/dis.c	/^static unsigned *type_21(unsigned *c,char *s,int i/
+type_22	disassembler/dis.c	/^static unsigned *type_22(unsigned *c,char *s,int i/
+type_23	disassembler/dis.c	/^static unsigned *type_23(unsigned *c,char *s,int i/
+type_24	disassembler/dis.c	/^static unsigned *type_24(unsigned *c,char *s,int i/
+type_25	disassembler/dis.c	/^static unsigned *type_25(unsigned *c,char *s,int i/
+type_26	disassembler/dis.c	/^static unsigned *type_26(unsigned *c,char *s,int i/
+type_27	disassembler/dis.c	/^static unsigned *type_27(unsigned *c,char *s,int i/
+type_28	disassembler/dis.c	/^static unsigned *type_28(unsigned *c,char *s,int i/
+type_29	disassembler/dis.c	/^static unsigned *type_29(unsigned *c,char *s,int i/
+type_3	disassembler/dis.c	/^static unsigned *type_3(unsigned *c,char *s,int in/
+type_4	disassembler/dis.c	/^static unsigned *type_4(unsigned *c,char *s,int in/
+type_5	disassembler/dis.c	/^static unsigned *type_5(unsigned *c,char *s,int in/
+type_6	disassembler/dis.c	/^static unsigned *type_6(unsigned *c,char *s,int in/
+type_7	disassembler/dis.c	/^static unsigned *type_7(unsigned *c,char *s,int in/
+type_8	disassembler/dis.c	/^static unsigned *type_8(unsigned *c,char *s,int in/
+type_9	disassembler/dis.c	/^static unsigned *type_9(unsigned *c,char *s,int in/
+unary_exp	parser/parser.c	/^unary_exp(char * clean_exp, int * offset, double */
+update_board	abalone/abalone.c	/^void update_board(void)$/
+use_gs	jacobi_g-s/jacobi_g-s.c	/^void use_gs(void)$/
+use_gsr	jacobi_g-s/jacobi_g-s.c	/^void use_gsr(void)$/
+use_jacobi	jacobi_g-s/jacobi_g-s.c	/^void use_jacobi(void)$/
+validate_move	abalone/abalone.c	/^int validate_move(void)$/
+verifier	lagrange/lagrange.c	/^verifier(void)$/
+vider_stdin	pretty_io/pretty_io.c	/^void vider_stdin(void)$/
+wronglabel	sim_e68k/e68k.c	/^int wronglabel(s,sp)  \/* check label definition *\//
+xlate_size	disassembler/dis.c	/^static int xlate_size(int *size,int type)$/
